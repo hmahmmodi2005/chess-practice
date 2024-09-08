@@ -78,8 +78,15 @@ class Main:
                 elif event.type == pygame.MOUSEBUTTONUP:
                     if dragger.dragging:
                         dragger.move_piece(board, game)
-                        game.check_winner(dragger.piece.color, self.screen)
-                        dragger.undrag_piece()
+                        if game.check_winner(dragger.piece.color, self.screen) == False:
+                            game.show_winner(dragger.piece.color, self.screen)
+
+                            game.reset()
+                            game = self.game
+                            board = self.game.board
+                            dragger = self.game.dragger
+                        else:
+                            dragger.undrag_piece()
 
                 # reset
                 elif event.type == pygame.KEYDOWN:

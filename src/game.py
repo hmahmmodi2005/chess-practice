@@ -93,12 +93,7 @@ class Game:
                     if piece.name == "king" and piece.color != color:
                         found = True
                         break
-        if not found:
-            sound = pygame.mixer.Sound("assets/sounds/win.wav")
-            sound.set_volume(0.5)
-            sound.play()
-            self.show_winner(color, surface)
-            print()
+        return found
     
     def show_winner(self, color, surface):
         winner_text = None
@@ -107,13 +102,19 @@ class Game:
         else:
             winner_text = self.font.render("Black wins!", 1, (255, 255, 255), (0, 0, 0))
 
+        # show winner text
         winner_text = pygame.transform.scale(winner_text, (winner_text.get_width() * 4, winner_text.get_height() * 4)) # increase font size of winner 3x
         text_pos = (SCREEN_WIDTH // 2 - winner_text.get_width() // 2, SCREEN_HEIGHT // 2 - winner_text.get_height() // 2)
         surface.blit(winner_text, text_pos)
 
+        # sounds
+        sound = pygame.mixer.Sound("assets/sounds/win.wav")
+        sound.set_volume(0.5)
+        sound.play()
+
         pygame.display.flip()  # Update the display
         time.sleep(3)  # Wait for 3 seconds
-        self.reset()  # Restart the game
+
 
     
     def show_hover(self, surface):
