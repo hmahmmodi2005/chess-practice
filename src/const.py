@@ -1,0 +1,6 @@
+# Screen dimensions in pixels(px)
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 800
+# Board dimensions
+BOARD_DIMENSIONS = 8
+SQR_SIZE = SCREEN_HEIGHT // BOARD_DIMENSIONS
